@@ -4,6 +4,8 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 
+from .utils import date_n_day_from
+
 yf.pdr_override() 
 
 class ReadData(object):
@@ -16,7 +18,7 @@ class ReadData(object):
         self.stock_symbol = stock_symbol
 
     def get_data(self, start_date: str, end_date: str,
-                 online: bool=True) -> pd.DataFrame:
+                 online: bool=False) -> pd.DataFrame:
         if online:
             panel_data = self._get_data_online(start_date, end_date)
         else:
@@ -28,6 +30,8 @@ class ReadData(object):
         try:
             #panel_data = pdr.DataReader(self.stock_symbol, 'yahoo', 
             #                             start_date, end_date)
+            end_date = date_n_day_from(end_date, 1)
+            
             panel_data = pdr.get_data_yahoo(self.stock_symbol, start_date, end_date)
         except:
             print(f"""
@@ -74,7 +78,7 @@ def check_valid_symbol(symbol: str) -> bool:
     """
     read_data = ReadData(symbol)
     read_df = read_data.get_data(start_date='2019-12-02', end_date='2019-12-06')
-    if read_df.shape[0] == 4:
+    if read_df.shape[0] >0:
         return True 
     else:
         return False

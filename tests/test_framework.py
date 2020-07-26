@@ -9,18 +9,23 @@ from src.backtest import BackTest
 from src.linreg_strategy import LinRegStrategy
 from src.factor import Factor, LinRegFactor, MovingAverageFactor
 
+# to run all tests:
+# python3.8 -m unittest tests/test_framework.py
 
+# to run a particular test:
+# python3.8 -m unittest tests.test_framework.TestFrameWork.test_read_data
 
 # write all the tests
 class TestFrameWork(unittest.TestCase):
     def test_read_data(self):
         read_data = ReadData('AAPL')
-        read_df = read_data.get_data(start_date='2019-12-01', end_date='2019-12-07', 
+        read_df = read_data.get_data(start_date='2019-12-02', end_date='2019-12-02', 
                                      online=True)
         self.assertTrue(read_df.shape[0] > 0)
         
-        read_df_2 = read_data.get_data(start_date='2019-12-01', end_date='2019-12-07', 
+        read_df_2 = read_data.get_data(start_date='2019-12-02', end_date='2019-12-02', 
                                      online=False)
+        
         self.assertTrue(read_df_2.shape[0] > 0)
     
     def test_daterange(self):
@@ -28,17 +33,70 @@ class TestFrameWork(unittest.TestCase):
             print(d)
 
     def test_stock(self):
+        # we will buy 10 stocks of apple on 2019-12-02
+        # we will sell 1 stock on 2019-12-03
+        # we will sell 9 stocks on 2019-12-09
+        
+        # Open prices
+        # 2019-12-02: 267.269989
+        # 2019-12-03: 258.309998
+        # 2019-12-09: 270.000000
+        
         test_stock = Stock('AAPL')
+        self.assertEqual(test_stock.get_symbol(), 'AAPL')
+        #get price
         test_price = test_stock.get_price('2019-12-02')
+        self.assertAlmostEqual(test_price, 267.269989,places=2)
+        
+        # get price for a range
         test_price_df = test_stock.get_price_history(
             start_date='2019-12-01', end_date='2019-12-09')
-        # buy 10, sell 9, check if it is still held
+        #market was open on 02,03,04,05,06,09:6 rows
+        self.assertEqual(test_price_df.shape[0], 6)
+        
+        # buy 10
         test_stock.buy(date='2019-12-02', num=10)
-        test_stock.sell(date='2019-12-03', num=9)
-        self.assertEqual(test_stock.is_held(), True)
-        # sell the remaining one and check not held
+        self.assertAlmostEqual(
+            test_stock.get_total_buy_cost(),2672.69989, places=2
+        )
+        self.assertAlmostEqual(
+            test_stock.get_total_sell_cost(),0., places=2
+        )
+        
+        # sell 1
         test_stock.sell(date='2019-12-03', num=1)
+        self.assertEqual(test_stock.is_held(), True)
+        
+        self.assertAlmostEqual(
+            test_stock.get_total_buy_cost(),2672.69989, places=2
+        )
+        self.assertAlmostEqual(
+            test_stock.get_total_sell_cost(),258.309998, places=2
+        )
+        
+        # 258.309998 * 9
+        self.assertAlmostEqual(
+            test_stock.get_valuation('2019-12-03'), 2324.7899820000002, places=2
+        )
+        
+        # sell the remaining one and check not held
+        test_stock.sell(date='2019-12-09', num=9)
         self.assertEqual(test_stock.is_held(), False)
+        
+        self.assertAlmostEqual(
+            test_stock.get_total_buy_cost(),2672.69989, places=2
+        )
+        
+        # 258.309998 * 1 + 270.000000 * 9 
+        self.assertAlmostEqual(
+            test_stock.get_total_sell_cost(), 2688.309998, places=2
+        )
+        
+        self.assertAlmostEqual(
+            test_stock.get_valuation('2019-12-09'), 0., places=2
+        )
+        
+        
     
     def test_holding(self):
         test_holding = Holding(cash=100000.)
@@ -106,8 +164,8 @@ class TestFrameWork(unittest.TestCase):
     def test_random_strategy(self):
         test_universe = Universe()
         all_stocks = [
-            'NOK', 'UAL', 'IAG', 'CPE', 
-            'SWN','ITP','AREC',  'DCIX', 'SDPI' 
+            'EMN', 'UAL', 'V', 'GS', 
+            'PYPL','ROK','CLX',  'CVS', 'RL' 
         ]
 
         for symbol in all_stocks:
@@ -126,7 +184,7 @@ class TestFrameWork(unittest.TestCase):
     
     def test_linreg_strategy(self):
         test_universe = Universe()
-        test_stocks = ['AAPL','AMZN','ADBE', 'SWN','VOO', 'VCR']
+        test_stocks = ['AAPL','AMZN','ADBE', 'CVS','VOO', 'VCR']
         for symbol in test_stocks:
             test_universe.add(symbol)
         

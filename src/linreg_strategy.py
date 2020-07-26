@@ -97,10 +97,10 @@ class LinRegStrategy(Strategy):
             # of the same stocks next day
             stocks_held = [x for x in self.holding.all_stocks if x.is_held()]
             for held_stock in stocks_held:
-                current_val = held_stock.get_current_valuation()
+                current_val = held_stock.get_valuation(date)
                 total_buy_cost = held_stock.get_total_buy_cost()
                 
-                if current_price/total_buy_cost > 1.05:
+                if current_val/total_buy_cost > 1.05:
                     basket.append(
                         StockChoice(
                             symbol=held_stock.stock_symbol, 

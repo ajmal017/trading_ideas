@@ -1,0 +1,21 @@
+INFO:src.stock:Date: 2019-12-02
+INFO:src.stock:Stock symbol: AAPL
+INFO:src.stock:Action: buy
+INFO:src.stock:Price: 267.26998901367193
+INFO:src.stock:Number of Stocks: 10
+INFO:src.stock:Number of stocks held: 10
+INFO:src.stock:Value of stocks held: 2672.699890136719
+INFO:src.stock:Date: 2019-12-03
+INFO:src.stock:Stock symbol: AAPL
+INFO:src.stock:Action: sell
+INFO:src.stock:Price: 258.3099975585937
+INFO:src.stock:Number of Stocks: 1
+INFO:src.stock:Number of stocks held: 9
+INFO:src.stock:Value of stocks held: 2324.7899780273433
+INFO:src.stock:Date: 2019-12-09
+INFO:src.stock:Stock symbol: AAPL
+INFO:src.stock:Action: sell
+INFO:src.stock:Price: 270.0
+INFO:src.stock:Number of Stocks: 9
+INFO:src.stock:Number of stocks held: 0
+INFO:src.stock:Value of stocks held: 0.0

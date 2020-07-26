@@ -46,7 +46,16 @@ class Stock(object):
         return self.stock_symbol
     
     def get_total_buy_cost(self):
+        """
+        returns the amount spent to buy this stock, over time
+        """
         return self.total_buy_cost
+    
+    def get_total_sell_cost(self):
+        """
+        returns the "realized" amount, by selling this stock.
+        """
+        return self.total_sales
 
     def get_price(self, date: str, is_strict: bool = False) -> float:
         # We take the price to the be the opening price.
@@ -90,7 +99,7 @@ class Stock(object):
                     )
 
 
-        return read_df['Open'][0]
+        return read_df['Open'].values[0]
     
     def get_price_history(self, start_date: str, end_date: str) -> pd.DataFrame:
         """
