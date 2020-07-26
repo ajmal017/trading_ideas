@@ -1,0 +1,75 @@
+symbol,sector
+EDV,Bond - Long-term Government
+BIV,Bond - Inter-term Investment
+VGIT,Bond - Inter-term Government
+BLV,Bond - Long-term Investment
+VGLT,Bond - Long-term Government
+VMBS,Bond - Inter-term Government
+BSV,Bond - Short-term Investment
+VTIP,Bond - Short-term Government
+VGSH,Bond - Short-term Government
+BND,Bond - Inter-term Investment
+VCIT,Bond - Inter-term Investment
+VCLT,Bond - Long-term Investment
+VCSH,Bond - Short-term Investment
+VTC,Bond - Inter-term Investment
+VTEB,Bond - Inter-term National Muni
+VIG,Stock - Large-Cap Blend
+ESGV,Stock - Large-Cap Blend
+VUG,Stock - Large-Cap Growth
+VYM,Stock - Large-Cap Value
+VV,Stock - Large-Cap Blend
+MGC,Stock - Large-Cap Blend
+MGK,Stock - Large-Cap Growth
+MGV,Stock - Large-Cap Value
+VONE,Stock - Large-Cap Blend
+VONG,Stock - Large-Cap Growth
+VONV,Stock - Large-Cap Value
+VTHR,Stock - Large-Cap Blend
+VOO,Stock - Large-Cap Blend
+VOOG,Stock - Large-Cap Growth
+VOOV,Stock - Large-Cap Value
+VTI,Stock - Large-Cap Blend
+VTV,Stock - Large-Cap Value
+VXF,Stock - Mid-Cap Blend
+VO,Stock - Mid-Cap Blend
+VOT,Stock - Mid-Cap Growth
+VOE,Stock - Mid-Cap Value
+IVOO,Stock - Mid-Cap Blend
+IVOG,Stock - Mid-Cap Growth
+IVOV,Stock - Mid-Cap Value
+VTWO,Stock - Small-Cap Blend
+VTWG,Stock - Small-Cap Growth
+VTWV,Stock - Small-Cap Value
+VIOO,Stock - Small-Cap Blend
+VIOG,Stock - Small-Cap Growth
+VIOV,Stock - Small-Cap Value
+VB,Stock - Small-Cap Blend
+VBK,Stock - Small-Cap Growth
+VBR,Stock - Small-Cap Value
+BNDW,International
+BNDX,International
+VWOB,International
+VT,International
+VSGX,International
+VEU,International
+VSS,International
+VEA,International
+VGK,International
+VPL,International
+VNQI,International
+VIGI,International
+VYMI,International
+VXUS,International
+VWO,International
+VOX,Stock - Sector
+VCR,Stock - Sector
+VDC,Stock - Sector
+VDE,Stock - Sector
+VFH,Stock - Sector
+VHT,Stock - Sector
+VIS,Stock - Sector
+VGT,Stock - Sector
+VAW,Stock - Sector
+VNQ,Stock - Sector
+VPU,Stock - Sector
