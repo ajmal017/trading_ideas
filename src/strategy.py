@@ -44,7 +44,6 @@ class Strategy(object):
         self.holding = Holding(cash=cash)
         self.init_cash = cash
         self.verbose = verbose
-        self.account = Account(holding=self.holding)
 
     def play(self, date_today : str):
         """
@@ -75,16 +74,16 @@ class Strategy(object):
                 """)
                 continue
         
-        self.account.update_holding_info(date=date_today, is_strict=True)
 
         log.info(date_today)
-        log.info(self.account)
+        account = self.holding.get_holding_info(date_today)
+        log.info(account)
         
         if self.verbose:
             print(date_today)
-            print(self.account)
+            print(account)
 
-        return self.account
+        return account
     
     def _choose_stocks(self, date: str) -> List[StockChoice]:
         raise NotImplementedError("Subclasses should implement")
@@ -123,10 +122,10 @@ class BenchMarkStrategy(Strategy):
         if self.buy_flag:
             return []
 
-        self.account.update_holding_info(date=date, is_strict=False)
+        this_account = self.holding.get_holding_info(date=date, is_strict=True)
         etf_stock = Stock('VOO')
         stock_price = etf_stock.get_price(date)
-        total_cash = self.account.cash_in_hand
+        total_cash = self.holding.get_cash()
         num_etf_stock = int(np.floor(total_cash/stock_price))
         stock_chosen = StockChoice(symbol='VOO', num=num_etf_stock,
                                    reco='buy')
@@ -153,7 +152,8 @@ class RandomStrategy(Strategy):
                           end_str=end_str, cash=cash, verbose=verbose)
         
     def _choose_stocks(self, date: str) -> List[StockChoice]:
-        self.account.update_holding_info(date=date, is_strict=False)
+        
+        this_account = self.holding.get_holding_info(date=date, is_strict=True)
         all_stocks = self.universe.get_universe()
 
         # toss a coin and decide whether to buy or sell
@@ -186,7 +186,8 @@ class RandomStrategy(Strategy):
             except:
                 return []
         else:
-            stocks_held = self.account.stocks_held
+            stocks_held = self.holding.get_stocks_held()
+            
             if len(stocks_held) == 0:
                 return []
             else:

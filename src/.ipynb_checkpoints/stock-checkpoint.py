@@ -27,6 +27,9 @@ class Stock(object):
     This object contains the state of the stock
     """
     def __init__(self, stock_symbol: str, verbose: bool = True):
+        # TODO define a queue for FIFO 
+        # keep track of realized and unrealized profits
+        
         self.stock_symbol = stock_symbol
         self.transaction_list = []
         self.total_num = 0
@@ -194,8 +197,138 @@ class Stock(object):
         self.current_valuation = self.total_num * self.get_price(date)
         
 
+class Account(object):
+    """
+    Contains all the accounting for a holding
+    """
+    def __init__(self, 
+                 amount_invested: float = 0., 
+                 current_valuation: float = 0.,
+                 total_profit: float = 0.,
+                 cash_in_hand: float= 0.,
+                 stocks_held: List[Stock]= []):
+        #TODO need to add realized profit in addition to total profit
+        # realized profit needs to be added to the stock class as well
+        
+        self.amount_invested = amount_invested
+        self.current_valuation = current_valuation
+        self.total_profit = total_profit
+        self.cash_in_hand = cash_in_hand
+        self.stocks_held = stocks_held
+
+    def __str__(self):
+        class_str = ','.join([
+            'amount_invested: ', str(self.amount_invested),
+            'current_valuation: ', str(self.current_valuation),
+            'total_profit: ', str(self.total_profit),
+            'cash_in_hand: ', str(self.cash_in_hand),
+            'stocks_held: ', ','.join([x.get_symbol() for x in self.stocks_held])
+        ])
+        
+        return class_str
+    
+    def update_account(self, this_stock: Stock, date: str, num: int,
+                       record_type: str):
+        if record_type not in ['buy', 'sell']:
+            raise ValueError(
+                f"record type should be buy or sell, it is {record_type}"
+            )
+            
+        self.update_cash(this_stock=this_stock, date=date, num=num,
+                    record_type=record_type)
+    
+        self.update_holding_info(date)
+        
+    
+    def update_holding_info(self, date: str,is_strict: bool = True):
+        
+        self.update_stocks()
+        
+        self.current_valuation = sum(
+            [x.get_valuation(date,is_strict) for x in self.stocks_held]
+        ) + self.cash_in_hand
+
+        self.total_profit = (self.current_valuation - self.amount_invested)
+        
 
         
+    def update_stocks(self):
+        """
+        Updates which stocks are currently held.
+        """
+        self.stocks_held = [x for x in self.stocks_held if x.is_held()]
+    
+    def get_stock(self, symbol: str):
+        """
+        returns a stock if its available, else returns none
+        """
+        for stock in self.stocks_held:
+            if stock.stock_symbol == symbol:
+                return stock
+        
+        return None 
+    
+    def add_and_get_stock(self, symbol: str, verbose: bool):
+        """
+        returns a stock if its not available, else adds it and 
+        returns the added stock
+        """
+        if self.get_stock(symbol) is None:
+            new_stock = Stock(stock_symbol = symbol,verbose=verbose)
+            self.stocks_held.append(new_stock)
+            return new_stock
+        else:
+            return self.get_stock(symbol)
+        
+    def get_cash(self) -> float:
+        return self.cash_in_hand
+    
+    def get_stock_symbols(self) -> List[str]:
+        self.update_stocks()
+        
+        return [x.get_symbol() for x in self.stocks_held]
+    
+        
+    
+    def update_cash(self, this_stock: Stock, date: str, num: int,
+                    record_type: str):
+        """
+        Updates the books, after each transaction
+        """ 
+        
+        if record_type not in ['buy', 'sell']:
+            raise ValueError(
+                f"record type should be buy or sell, it is {record_type}")
+            
+        amount = this_stock.get_price(date) * num 
+
+        if record_type == 'buy':
+            if (self.cash_in_hand - amount) < 0.:
+                raise ValueError(
+                    f"""
+                    You are trying to buy {amount} but you only have {self.cash_in_hand}.
+                    Your order is for {num} of {this_stock.stock_symbol}, 
+                    which costs {num} X {this_stock.get_price(date)} = {amount}
+                    """
+                )
+            self.cash_in_hand -= amount
+        else:
+            self.cash_in_hand += amount
+    
+    def has_cash(self, this_stock: Stock, date: str, num: int):
+        """
+        queries if there is enough cash to buy this stock
+        """
+        amount = this_stock.get_price(date) * num 
+        if (self.cash_in_hand - amount) < 0.:
+            return False
+        else:
+            return True
+        
+        
+    
+
+
         
 class Holding(object):
     """
@@ -203,18 +336,19 @@ class Holding(object):
     all the statistics corresponding to it, such as returns etc. At a given time
     this can be called to tell us the current returns, current holdings etc.
     """
+    #TODO add methods to add/substract cash
 
     def __init__(self, cash: float):
         self.all_stocks = [] 
         self.cash = cash
         self.starting_cash = cash
-        self.accounts = {
-            'amount_invested': cash,
-            'current_valuation': cash,
-            'total_profit': 0.,
-            'cash_in_hand': cash,
-            'stocks_held': []
-        }
+        self.account = Account(
+            amount_invested = cash,
+            current_valuation = cash,
+            total_profit = 0.,
+            cash_in_hand = cash,
+            stocks_held = []
+        )
 
     
     def record(self, date: str, symbol: str, num: int, record_type: str,
@@ -228,120 +362,48 @@ class Holding(object):
             raise ValueError(
                 f"record type should be buy or sell, it is {record_type}")
 
-        # if stock not in portfolio, add it
-        if self._get_stock(symbol) is None:
-            new_stock = Stock(stock_symbol = symbol,verbose=verbose)
-            self.all_stocks.append(new_stock)
         
-        this_stock = self._get_stock(symbol)
-       
+        this_stock = self.account.add_and_get_stock(symbol, verbose)
+
         
         if record_type == 'buy':
-            if self._has_cash(this_stock=this_stock, date=date, num=num):
+            if self.account.has_cash(this_stock=this_stock, date=date, num=num):
                 this_stock.buy(date=date, num=num)
+                
+                self.account.update_account(this_stock=this_stock, date=date, 
+                                            num=num, record_type=record_type)
+            else:
+                print(f"""
+                Tried to buy {num} shares of {this_stock.symbol} but
+                dont have enough cash
+                """)
         else:
             this_stock.sell(date=date, num=num)
 
-        self._update_cash(this_stock=this_stock, date=date, num=num,
-                          record_type=record_type)
-    
-    def _get_stock(self, symbol: str):
-        for stock in self.all_stocks:
-            if stock.stock_symbol == symbol:
-                return stock
-        
-        return None
-
-    def _has_cash(self, this_stock: Stock, date: str, num: int):
-        """
-        queries if there is enough cash to buy this stock
-        """
-        amount = this_stock.get_price(date) * num 
-        if (self.cash - amount) < 0.:
-            return False
-        else:
-            return True
-
-    def _update_cash(self, this_stock: Stock, date: str, num: int,
-                         record_type: str):
-        """
-        Updates the books, after each transaction
-        """ 
-        if record_type not in ['buy', 'sell']:
-            raise ValueError(
-                f"record type should be buy or sell, it is {record_type}")
-            
-        amount = this_stock.get_price(date) * num 
-
-        if record_type == 'buy':
-            if (self.cash - amount) < 0.:
-                raise ValueError(
-                    f"""
-                    You are trying to buy {amount} but you only have {self.cash}.
-                    Your order is for {num} of {this_stock.stock_symbol}, 
-                    which costs {num} X {this_stock.get_price(date)} = {amount}
-                    """
-                )
-            self.cash -= amount
-        else:
-            self.cash += amount
+            self.account.update_account(this_stock=this_stock, date=date, 
+                                        num=num, record_type=record_type)
+                
 
     def get_cash(self) -> float:
-        return self.cash
+        return self.account.get_cash()
 
     def get_holding_info(self, date: str, is_strict: bool = True):
         """
         What is the current state of the account?
+        Refresh the valuation for the current date
         """
-        # optimize this later, you don't need to go through all stocks to 
-        # calculate valuation
-        self.accounts['cash_in_hand'] = self.cash
-        self.accounts['current_valuation'] = sum(
-            [x.get_valuation(date, is_strict) for x in self.all_stocks]
-        ) + self.cash
-        self.accounts['total_profit'] = (
-            self.accounts['current_valuation'] -   
-            self.accounts['amount_invested']
-        )
-        self.accounts['stocks_held'] = ([
-            x.stock_symbol for x in self.all_stocks if x.is_held()])
-
-        return self.accounts
-
-class Account(object):
-    """
-    Contains all the accouting for a holding
-    """
-    def __init__(self, holding: Holding):
-        self.holding = holding
-        self.amount_invested = self.holding.get_cash()
-        self.current_valuation = self.holding.get_cash()
-        self.total_profit = 0.
-        self.cash_in_hand = self.holding.get_cash()
-        self.stocks_held = []
-
-    def __str__(self):
-        class_str = ','.join([
-            'amount_invested: ', str(self.amount_invested),
-            'current_valuation: ', str(self.current_valuation),
-            'total_profit: ', str(self.total_profit),
-            'cash_in_hand: ', str(self.cash_in_hand),
-            'stocks_held: ', str(self.stocks_held)
-        ])
+        self.account.update_holding_info(date, is_strict)
+        return self.account
+    
+    def get_stocks_held(self) -> List[str]:
+        """
+        returns the list of current stocks held.
+        """
+        # TODO should we return the symbols?
+        # it is potentially unsafe that the caller can modify the Stock objects
         
-        return class_str
-    
-    def update_holding_info(self, date: str,is_strict: bool = True):
-        self.cash_in_hand = self.holding.get_cash()
-        self.current_valuation = sum(
-            [x.get_valuation(date,is_strict) for x in self.holding.all_stocks]
-        ) + self.holding.get_cash()
-
-        self.total_profit = (self.current_valuation - self.amount_invested)
-
-        self.stocks_held = ([
-            x.stock_symbol for x in self.holding.all_stocks if x.is_held()])
-    
+        
+        return self.account.get_stock_symbols()
 
 
 class Universe(object):

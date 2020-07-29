@@ -1,4 +1,203 @@
 INFO:src.stock:Date: 2019-12-02
+INFO:src.stock:Stock symbol: ADBE
+INFO:src.stock:Action: buy
+INFO:src.stock:Price: 309.2200012207031
+INFO:src.stock:Number of Stocks: 10
+INFO:src.stock:Number of stocks held: 10
+INFO:src.stock:Value of stocks held: 3092.2000122070312
+INFO:src.strategy:2019-12-02
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,100000.0,total_profit: ,0.0,cash_in_hand: ,96907.79998779297,stocks_held: ,ADBE
+INFO:src.stock:Date: 2019-12-02
+INFO:src.stock:Stock symbol: VOO
+INFO:src.stock:Action: buy
+INFO:src.stock:Price: 289.0299987792969
+INFO:src.stock:Number of Stocks: 345
+INFO:src.stock:Number of stocks held: 345
+INFO:src.stock:Value of stocks held: 99715.34957885742
+INFO:src.strategy:2019-12-02
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,100000.0,total_profit: ,0.0,cash_in_hand: ,284.6504211425781,stocks_held: ,VOO
+INFO:src.stock:Date: 2019-12-03
+INFO:src.stock:Stock symbol: AMZN
+INFO:src.stock:Action: buy
+INFO:src.stock:Price: 1760.0
+INFO:src.stock:Number of Stocks: 10
+INFO:src.stock:Number of stocks held: 10
+INFO:src.stock:Value of stocks held: 17600.0
+INFO:src.strategy:2019-12-03
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,99890.19989013672,total_profit: ,-109.80010986328125,cash_in_hand: ,79307.79998779297,stocks_held: ,ADBE,AMZN
+INFO:src.strategy:2019-12-03
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,98099.04663085938,total_profit: ,-1900.953369140625,cash_in_hand: ,284.6504211425781,stocks_held: ,VOO
+INFO:src.stock:Date: 2019-12-02
+INFO:src.stock:Stock symbol: VOO
+INFO:src.stock:Action: buy
+INFO:src.stock:Price: 289.0299987792969
+INFO:src.stock:Number of Stocks: 34
+INFO:src.stock:Number of stocks held: 34
+INFO:src.stock:Value of stocks held: 9827.019958496094
+INFO:src.strategy:2019-12-02
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,10000.0,total_profit: ,0.0,cash_in_hand: ,172.98004150390625,stocks_held: ,VOO
+INFO:src.strategy:2019-12-03
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,9812.65966796875,total_profit: ,-187.34033203125,cash_in_hand: ,172.98004150390625,stocks_held: ,VOO
+INFO:src.stock:Date: 2019-12-02
+INFO:src.stock:Stock symbol: AAPL
+INFO:src.stock:Action: buy
+INFO:src.stock:Price: 267.26998901367193
+INFO:src.stock:Number of Stocks: 10
+INFO:src.stock:Number of stocks held: 10
+INFO:src.stock:Value of stocks held: 2672.699890136719
+INFO:src.stock:Date: 2019-12-03
+INFO:src.stock:Stock symbol: AMZN
+INFO:src.stock:Action: buy
+INFO:src.stock:Price: 1760.0
+INFO:src.stock:Number of Stocks: 10
+INFO:src.stock:Number of stocks held: 10
+INFO:src.stock:Value of stocks held: 17600.0
+INFO:src.stock:Date: 2019-12-09
+INFO:src.stock:Stock symbol: AMZN
+INFO:src.stock:Action: sell
+INFO:src.stock:Price: 1750.6600341796875
+INFO:src.stock:Number of Stocks: 10
+INFO:src.stock:Number of stocks held: 0
+INFO:src.stock:Value of stocks held: 0.0
+INFO:src.stock:Date: 2019-12-09
+INFO:src.stock:Stock symbol: AAPL
+INFO:src.stock:Action: sell
+INFO:src.stock:Price: 270.0
+INFO:src.stock:Number of Stocks: 10
+INFO:src.stock:Number of stocks held: 0
+INFO:src.stock:Value of stocks held: 0.0
+INFO:src.strategy:2019-12-02
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,100000,total_profit: ,0,cash_in_hand: ,100000,stocks_held: ,
+INFO:src.stock:Date: 2019-12-02
+INFO:src.stock:Stock symbol: VOO
+INFO:src.stock:Action: buy
+INFO:src.stock:Price: 289.0299987792969
+INFO:src.stock:Number of Stocks: 345
+INFO:src.stock:Number of stocks held: 345
+INFO:src.stock:Value of stocks held: 99715.34957885742
+INFO:src.strategy:2019-12-02
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,100000.0,total_profit: ,0.0,cash_in_hand: ,284.6504211425781,stocks_held: ,VOO
+INFO:src.strategy:2019-12-03
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,100000,total_profit: ,0,cash_in_hand: ,100000,stocks_held: ,
+INFO:src.strategy:2019-12-03
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,98099.04663085938,total_profit: ,-1900.953369140625,cash_in_hand: ,284.6504211425781,stocks_held: ,VOO
+INFO:src.strategy:2019-12-04
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,100000,total_profit: ,0,cash_in_hand: ,100000,stocks_held: ,
+INFO:src.strategy:2019-12-04
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,98751.10168457031,total_profit: ,-1248.8983154296875,cash_in_hand: ,284.6504211425781,stocks_held: ,VOO
+INFO:src.stock:Date: 2019-12-05
+INFO:src.stock:Stock symbol: CVS
+INFO:src.stock:Action: buy
+INFO:src.stock:Price: 75.05999755859375
+INFO:src.stock:Number of Stocks: 1332
+INFO:src.stock:Number of stocks held: 1332
+INFO:src.stock:Value of stocks held: 99979.91674804688
+INFO:src.strategy:2019-12-05
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,100000.0,total_profit: ,0.0,cash_in_hand: ,20.083251953125,stocks_held: ,CVS
+INFO:src.strategy:2019-12-05
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,99240.99578857422,total_profit: ,-759.0042114257812,cash_in_hand: ,284.6504211425781,stocks_held: ,VOO
+INFO:src.strategy:2019-12-06
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,100026.64569091797,total_profit: ,26.64569091796875,cash_in_hand: ,20.083251953125,stocks_held: ,CVS
+INFO:src.strategy:2019-12-06
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,99844.74578857422,total_profit: ,-155.25421142578125,cash_in_hand: ,284.6504211425781,stocks_held: ,VOO
+INFO:src.strategy:2019-12-09
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,99960.04162597656,total_profit: ,-39.9583740234375,cash_in_hand: ,20.083251953125,stocks_held: ,CVS
+INFO:src.strategy:2019-12-09
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,99944.79873657227,total_profit: ,-55.201263427734375,cash_in_hand: ,284.6504211425781,stocks_held: ,VOO
+INFO:src.strategy:2019-12-10
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,99920.08325195312,total_profit: ,-79.916748046875,cash_in_hand: ,20.083251953125,stocks_held: ,CVS
+INFO:src.strategy:2019-12-10
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,99751.59957885742,total_profit: ,-248.40042114257812,cash_in_hand: ,284.6504211425781,stocks_held: ,VOO
+INFO:src.stock:Date: 2019-12-11
+INFO:src.stock:Stock symbol: ADBE
+INFO:src.stock:Action: buy
+INFO:src.stock:Price: 305.1499938964844
+INFO:src.stock:Number of Stocks: 0
+INFO:src.stock:Number of stocks held: 0
+INFO:src.stock:Value of stocks held: 0.0
+INFO:src.strategy:2019-12-11
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,97349.32284545898,total_profit: ,-2650.6771545410156,cash_in_hand: ,20.083251953125,stocks_held: ,CVS,ADBE
+INFO:src.strategy:2019-12-11
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,99799.90463256836,total_profit: ,-200.09536743164062,cash_in_hand: ,284.6504211425781,stocks_held: ,VOO
+INFO:src.strategy:2019-12-12
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,98095.23959350586,total_profit: ,-1904.7604064941406,cash_in_hand: ,20.083251953125,stocks_held: ,CVS,ADBE
+INFO:src.strategy:2019-12-12
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,99937.90252685547,total_profit: ,-62.09747314453125,cash_in_hand: ,284.6504211425781,stocks_held: ,VOO
+INFO:src.strategy:2019-12-13
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,98881.12487792969,total_profit: ,-1118.8751220703125,cash_in_hand: ,20.083251953125,stocks_held: ,CVS,ADBE
+INFO:src.strategy:2019-12-13
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,100710.69915771484,total_profit: ,710.6991577148438,cash_in_hand: ,284.6504211425781,stocks_held: ,VOO
+INFO:src.strategy:2019-12-16
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,98921.08325195312,total_profit: ,-1078.916748046875,cash_in_hand: ,20.083251953125,stocks_held: ,CVS,ADBE
+INFO:src.strategy:2019-12-16
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,101459.3537902832,total_profit: ,1459.3537902832031,cash_in_hand: ,284.6504211425781,stocks_held: ,VOO
+INFO:src.stock:Date: 2019-12-17
+INFO:src.stock:Stock symbol: ADBE
+INFO:src.stock:Action: buy
+INFO:src.stock:Price: 325.0400085449219
+INFO:src.stock:Number of Stocks: 0
+INFO:src.stock:Number of stocks held: 0
+INFO:src.stock:Value of stocks held: 0.0
+INFO:src.strategy:2019-12-17
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,99107.56243896484,total_profit: ,-892.4375610351562,cash_in_hand: ,20.083251953125,stocks_held: ,CVS,ADBE
+INFO:src.strategy:2019-12-17
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,101711.19705200195,total_profit: ,1711.1970520019531,cash_in_hand: ,284.6504211425781,stocks_held: ,VOO
+INFO:src.strategy:2019-12-18
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,97176.16650390625,total_profit: ,-2823.83349609375,cash_in_hand: ,20.083251953125,stocks_held: ,CVS,ADBE
+INFO:src.strategy:2019-12-18
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,101721.54663085938,total_profit: ,1721.546630859375,cash_in_hand: ,284.6504211425781,stocks_held: ,VOO
+INFO:src.strategy:2019-12-19
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,98521.47918701172,total_profit: ,-1478.5208129882812,cash_in_hand: ,20.083251953125,stocks_held: ,CVS,ADBE
+INFO:src.strategy:2019-12-19
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,101638.75,total_profit: ,1638.75,cash_in_hand: ,284.6504211425781,stocks_held: ,VOO
+INFO:src.strategy:2019-12-02
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,10000,total_profit: ,0,cash_in_hand: ,10000,stocks_held: ,
+INFO:src.stock:Date: 2019-12-02
+INFO:src.stock:Stock symbol: VOO
+INFO:src.stock:Action: buy
+INFO:src.stock:Price: 289.0299987792969
+INFO:src.stock:Number of Stocks: 34
+INFO:src.stock:Number of stocks held: 34
+INFO:src.stock:Value of stocks held: 9827.019958496094
+INFO:src.strategy:2019-12-02
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,10000.0,total_profit: ,0.0,cash_in_hand: ,172.98004150390625,stocks_held: ,VOO
+INFO:src.strategy:2019-12-03
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,10000,total_profit: ,0,cash_in_hand: ,10000,stocks_held: ,
+INFO:src.strategy:2019-12-03
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,9812.65966796875,total_profit: ,-187.34033203125,cash_in_hand: ,172.98004150390625,stocks_held: ,VOO
+INFO:src.strategy:2019-12-04
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,10000,total_profit: ,0,cash_in_hand: ,10000,stocks_held: ,
+INFO:src.strategy:2019-12-04
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,9876.920166015625,total_profit: ,-123.079833984375,cash_in_hand: ,172.98004150390625,stocks_held: ,VOO
+INFO:src.strategy:2019-12-05
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,10000,total_profit: ,0,cash_in_hand: ,10000,stocks_held: ,
+INFO:src.strategy:2019-12-05
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,9925.199584960938,total_profit: ,-74.8004150390625,cash_in_hand: ,172.98004150390625,stocks_held: ,VOO
+INFO:src.strategy:2019-12-06
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,10000,total_profit: ,0,cash_in_hand: ,10000,stocks_held: ,
+INFO:src.strategy:2019-12-06
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,9984.699584960938,total_profit: ,-15.3004150390625,cash_in_hand: ,172.98004150390625,stocks_held: ,VOO
+INFO:src.strategy:2019-12-09
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,10000,total_profit: ,0,cash_in_hand: ,10000,stocks_held: ,
+INFO:src.strategy:2019-12-09
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,9994.559875488281,total_profit: ,-5.44012451171875,cash_in_hand: ,172.98004150390625,stocks_held: ,VOO
+INFO:src.strategy:2019-12-10
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,10000,total_profit: ,0,cash_in_hand: ,10000,stocks_held: ,
+INFO:src.strategy:2019-12-10
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,9975.519958496094,total_profit: ,-24.48004150390625,cash_in_hand: ,172.98004150390625,stocks_held: ,VOO
+INFO:src.strategy:2019-12-11
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,10000,total_profit: ,0,cash_in_hand: ,10000,stocks_held: ,
+INFO:src.strategy:2019-12-11
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,9980.280456542969,total_profit: ,-19.71954345703125,cash_in_hand: ,172.98004150390625,stocks_held: ,VOO
+INFO:src.strategy:2019-12-12
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,10000,total_profit: ,0,cash_in_hand: ,10000,stocks_held: ,
+INFO:src.strategy:2019-12-12
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,9993.880249023438,total_profit: ,-6.1197509765625,cash_in_hand: ,172.98004150390625,stocks_held: ,VOO
+INFO:src.strategy:2019-12-13
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,10000,total_profit: ,0,cash_in_hand: ,10000,stocks_held: ,
+INFO:src.strategy:2019-12-13
+INFO:src.strategy:amount_invested: ,10000,current_valuation: ,10070.039916992188,total_profit: ,70.0399169921875,cash_in_hand: ,172.98004150390625,stocks_held: ,VOO
+INFO:src.stock:Date: 2019-12-02
 INFO:src.stock:Stock symbol: AAPL
 INFO:src.stock:Action: buy
 INFO:src.stock:Price: 267.26998901367193
@@ -19,3 +218,12 @@ INFO:src.stock:Price: 270.0
 INFO:src.stock:Number of Stocks: 9
 INFO:src.stock:Number of stocks held: 0
 INFO:src.stock:Value of stocks held: 0.0
+INFO:src.stock:Date: 2019-12-02
+INFO:src.stock:Stock symbol: ADBE
+INFO:src.stock:Action: buy
+INFO:src.stock:Price: 309.2200012207031
+INFO:src.stock:Number of Stocks: 10
+INFO:src.stock:Number of stocks held: 10
+INFO:src.stock:Value of stocks held: 3092.2000122070312
+INFO:src.strategy:2019-12-02
+INFO:src.strategy:amount_invested: ,100000,current_valuation: ,100000.0,total_profit: ,0.0,cash_in_hand: ,96907.79998779297,stocks_held: ,ADBE

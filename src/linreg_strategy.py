@@ -89,13 +89,13 @@ class LinRegStrategy(Strategy):
 
 
         if self.sell_flag:
-            self.account.update_holding_info(date=date, is_strict=False)
-
+            this_account = self.holding.get_holding_info(date=date, is_strict=True)
             
             # First sell all the stocks that are making a profit, 
             # and then buy back rebalanced amounts
             # of the same stocks next day
-            stocks_held = [x for x in self.holding.all_stocks if x.is_held()]
+            #TODO: this should bea get_stocks function in holding
+            stocks_held = self.holding.account.stocks_held
             for held_stock in stocks_held:
                 current_val = held_stock.get_valuation(date)
                 total_buy_cost = held_stock.get_total_buy_cost()

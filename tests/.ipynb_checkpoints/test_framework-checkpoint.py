@@ -54,7 +54,6 @@ class TestFrameWork(unittest.TestCase):
         #market was open on 02,03,04,05,06,09:6 rows
         self.assertEqual(test_price_df.shape[0], 6)
         
-        
         # buy 10
         test_stock.buy(date='2019-12-02', num=10)
         self.assertAlmostEqual(
@@ -63,8 +62,6 @@ class TestFrameWork(unittest.TestCase):
         self.assertAlmostEqual(
             test_stock.get_total_sell_cost(),0., places=2
         )
-        
-        
         
         # sell 1
         test_stock.sell(date='2019-12-03', num=1)
@@ -102,16 +99,84 @@ class TestFrameWork(unittest.TestCase):
         
     
     def test_holding(self):
-        test_holding = Holding(cash=100000.)
-        stock_1 = Stock('AAPL')
+        # we will buy 10 stocks of AAPL on 2019-12-02
+        # we will buy 10 stocks of AMZN on 2019-12-03
+        # we will sell 10 stocks of AMZN on 2019-12-09
+        # we will sell 10 stocks of AAPL on 2019-12-09
+        
+        ## AAPL:
+        # 2019-12-02: 267.269989
+        # 2019-12-04: 261.070007
+        # 2019-12-09: 270.000000
+        
+        ## AMZN
+        # 2019-12-03: 1760.000000
+        # 2019-12-04: 1774.010010 
+        # 2019-12-09: 1750.660034
+        
+        start_cash = 1e5
+        
+        test_holding = Holding(cash=start_cash)
+        self.assertAlmostEqual(test_holding.get_cash(), start_cash, 2)
+        
         test_holding.record(date='2019-12-02', symbol='AAPL', 
                             num=10, record_type='buy')
         
-        test_holding.record(date='2019-12-02', symbol='AMZN', 
+        new_cash = start_cash - 10 * 267.269989
+        self.assertAlmostEqual(test_holding.get_cash(), new_cash, 2)
+        
+        
+        test_holding.record(date='2019-12-03', symbol='AMZN', 
                             num=10, record_type='buy')
         
-        test_holding.record(date='2019-12-02', symbol='AMZN', 
+        
+        new_cash = new_cash - 10 * 1760.000000
+        self.assertAlmostEqual(test_holding.get_cash(), new_cash, 2)
+        
+        # test what happens on 12-04
+        valuation_1204 = new_cash + 1774.010010 * 10 + 261.070007 * 10
+        profit_1204 = valuation_1204 - start_cash
+        account = test_holding.get_holding_info('2019-12-04')
+        
+        self.assertAlmostEqual(account.amount_invested, start_cash, 2)
+        self.assertAlmostEqual(account.total_profit, profit_1204, 2)
+        self.assertAlmostEqual(account.current_valuation, valuation_1204, 2)
+        self.assertAlmostEqual(account.cash_in_hand, new_cash, 2)
+        self.assertEqual(len(account.stocks_held), 2)
+        
+        
+        test_holding.record(date='2019-12-09', symbol='AMZN', 
                             num=10, record_type='sell')
+        
+        new_cash = new_cash + 10 * 1750.660034
+        self.assertAlmostEqual(test_holding.get_cash(), new_cash, 2)
+        
+        test_holding.record(date='2019-12-09', symbol='AAPL', 
+                            num=10, record_type='sell')
+        
+        new_cash = new_cash + 10 * 270.000000
+        self.assertAlmostEqual(test_holding.get_cash(), new_cash, 2)
+        
+        
+        account = test_holding.get_holding_info('2019-12-09')
+        profit = new_cash - start_cash
+        
+        self.assertAlmostEqual(account.amount_invested, start_cash, 2)
+        self.assertAlmostEqual(account.total_profit, profit, 2)
+        self.assertAlmostEqual(account.current_valuation, new_cash, 2)
+        self.assertAlmostEqual(account.cash_in_hand, new_cash, 2)
+        self.assertEqual(account.stocks_held, [])
+        
+        
+        
+        #TODO: nothing is stopping the case where we sell the stock at
+        # an earlier date than buying it
+        # this should fail(in test for stock):
+        # test_holding.record(date='2019-12-02', symbol='AMZN', 
+        #                    num=10, record_type='sell')
+        # For this we need to implement a queue in the Stock class
+        
+        
     
     def test_universe(self):
         test_universe = Universe()
